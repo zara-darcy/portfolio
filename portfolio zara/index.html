@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zar Darcy - Machine Learning & Neural Networks Educator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    :root {
+      --color-bg: #0e0b16;
+      --color-bg-gradient: linear-gradient(135deg, #2a0a3d, #4c0070);
+      --color-text: #e0bbe4;
+      --color-text-muted: #ae95d2;
+      --color-primary: #ff2d95;
+      --color-primary-hover: #ff51b8;
+      --color-card-bg: rgba(255 255 255 / 0.08);
+      --color-card-glass: rgba(255 255 255 / 0.12);
+      --color-btn-bg: #ff2d95;
+      --color-btn-hover: #ff51b8;
+      --radius: 1rem;
+      --shadow-glow: 0 0 15px var(--color-primary);
+      --shadow-card: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      --font-family: 'Poppins', sans-serif;
+
+      /* Default style spacing and sizing */
+      --spacing-xxl: 6rem;
+      --spacing-xl: 4rem;
+      --spacing-lg: 3rem;
+      --spacing-md: 2rem;
+      --spacing-sm: 1rem;
+
+      --max-width: 1200px;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: var(--font-family);
+      background: var(--color-bg-gradient);
+      color: var(--color-text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+      min-height: 100vh;
+    }
+    a {
+      color: var(--color-primary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-weight: 600;
+    }
+    a:hover, a:focus {
+      color: var(--color-primary-hover);
+      outline: none;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(14, 11, 22, 0.85);
+      backdrop-filter: saturate(180%) blur(10px);
+      border-bottom: 1px solid rgba(255 255 255 / 0.1);
+      z-index: 1000;
+      box-shadow: 0 0 10px rgba(255, 45, 149, 0.3);
+    }
+    .nav-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--spacing-sm) var(--spacing-md);
+    }
+    .logo {
+      font-weight: 800;
+      font-size: 1.75rem;
+      color: var(--color-primary);
+      user-select: none;
+      letter-spacing: 0.08em;
+      text-shadow: 0 0 7px var(--color-primary);
+      cursor: default;
+    }
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--color-text-muted);
+    }
+    nav ul li a {
+      padding: 0.35rem 0.15rem;
+      position: relative;
+      border-radius: var(--radius);
+      transition: all 0.35s ease;
+    }
+    nav ul li a::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0%;
+      height: 2px;
+      background: var(--color-primary);
+      border-radius: 16px;
+      transition: width 0.3s ease;
+    }
+    nav ul li a:hover,
+    nav ul li a:focus {
+      color: var(--color-primary-hover);
+      outline: none;
+      box-shadow: 0 0 10px var(--color-primary-hover);
+      background: rgba(255 45 149 / 0.15);
+    }
+    nav ul li a:hover::after,
+    nav ul li a:focus::after {
+      width: 70%;
+    }
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxl) var(--spacing-md) var(--spacing-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xl);
+      user-select: text;
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      color: var(--color-text);
+      text-shadow: 0 0 8px rgba(255 45 149, 0.6);
+      user-select: none;
+    }
+    .hero h1 {
+      font-size: 3.8rem;
+      font-weight: 900;
+      line-height: 1.05;
+      max-width: 650px;
+      letter-spacing: 0.095em;
+      color: #ffc0e9;
+      text-shadow:
+        0 0 8px #ff30a6,
+        0 0 15px #ff30a6,
+        0 0 70px #ff30a6;
+      margin: 0;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 600px;
+      color: #e8bbffcc;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      user-select: text;
+      margin: 0;
+    }
+    .hero .btn-primary {
+      margin-top: 2rem;
+      background: var(--color-btn-bg);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      padding: 0.85rem 2.25rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 0 10px var(--color-primary);
+      transition: background-color 0.3s ease, transform 0.25s ease, box-shadow 0.3s ease;
+      user-select: none;
+      align-self: flex-start;
+    }
+    .hero .btn-primary:hover,
+    .hero .btn-primary:focus {
+      background: var(--color-btn-hover);
+      outline: none;
+      transform: scale(1.07);
+      box-shadow:
+        0 0 25px var(--color-primary-hover),
+        0 0 50px var(--color-primary-hover);
+    }
+    section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+      user-select: text;
+    }
+    section h2 {
+      font-size: 2.75rem;
+      font-weight: 900;
+      color: #ffa6de;
+      letter-spacing: 0.1em;
+      text-shadow:
+        0 0 10px #ff75c1,
+        0 0 25px #ff75c1;
+      margin: 0 0 var(--spacing-sm) 0;
+      user-select: text;
+    }
+    .card {
+      position: relative;
+      background: var(--color-card-bg);
+      border-radius: var(--radius);
+      padding: var(--spacing-md);
+      box-shadow: var(--shadow-card);
+      backdrop-filter: saturate(180%) blur(12px);
+      border: 1px solid rgba(255 255 255 / 0.15);
+      color: var(--color-text);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      user-select: text;
+      cursor: default;
+    }
+    .card:hover,
+    .card:focus-within {
+      transform: translateY(-5px);
+      box-shadow:
+        0 0 25px 6px rgba(255, 45, 149, 0.6),
+        0 8px 40px 6px rgba(255, 45, 149, 0.3);
+      outline: none;
+    }
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      flex-wrap: wrap;
+      user-select: text;
+    }
+    .user-image-container {
+      flex-shrink: 0;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow:
+        0 0 25px 5px var(--color-primary),
+        0 0 55px 15px rgba(255, 45, 149, 0.5);
+      border: 3px solid var(--color-primary);
+      position: relative;
+      user-select: none;
+    }
+    .user-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.75s ease;
+      will-change: opacity;
+    }
+    .user-image-container img.active {
+      opacity: 1;
+      position: relative;
+    }
+    .about-text {
+      flex: 1 1 400px;
+      font-size: 1.1rem;
+      color: #deb7ffdd;
+      user-select: text;
+      line-height: 1.6;
+    }
+    .course-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: var(--spacing-md);
+    }
+    .course-card {
+      background: var(--color-card-glass);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.5rem;
+      color: #e3caffdd;
+      box-shadow: 0 0 18px rgba(255, 45, 149, 0.4);
+      backdrop-filter: saturate(180%) blur(10px);
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+      user-select: text;
+      cursor: default;
+    }
+    .course-card:hover,
+    .course-card:focus-within {
+      transform: translateY(-6px);
+      box-shadow:
+        0 0 25px 8px var(--color-primary-hover),
+        0 10px 40px 6px rgba(255, 81, 209, 0.6);
+      outline: none;
+    }
+    .course-card h3 {
+      margin: 0 0 0.65rem 0;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #ffc0e9;
+    }
+    .course-card p {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #f8eaffcc;
+    }
+    .platform-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-lg);
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .platform-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--color-primary);
+      font-weight: 700;
+      font-size: 1.25rem;
+      cursor: default;
+      user-select: none;
+      transition: color 0.35s ease, filter 0.35s ease;
+      user-select: none;
+    }
+    .platform-item img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      user-select: none;
+      display: block;
+      filter: drop-shadow(0 0 3px var(--color-primary));
+      transition: filter 0.35s ease;
+    }
+    .platform-item:hover {
+      color: var(--color-primary-hover);
+    }
+    .platform-item:hover img {
+      filter:
+        drop-shadow(0 0 6px var(--color-primary-hover));
+    }
+    .contact form {
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+    .contact label {
+      font-weight: 600;
+      color: var(--color-primary);
+      font-size: 1rem;
+    }
+    .contact input, 
+    .contact textarea {
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: var(--radius);
+      resize: vertical;
+      font-family: var(--font-family);
+      transition: border-color 0.3s ease;
+    }
+    .contact input:focus, .contact textarea:focus {
+      border-color: var(--color-primary);
+      outline: none;
+    }
+    .contact button {
+      background-color: var(--color-primary);
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-weight: 700;
+      font-size: 1.125rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      user-select: none;
+    }
+    .contact button:hover,
+    .contact button:focus {
+      background-color: var(--color-primary-hover);
+      outline: none;
+      transform: scale(1.05);
+    }
+    footer {
+      max-width: var(--max-width);
+      margin: 0 auto var(--spacing-md);
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+      padding: 0 1rem;
+      text-align: center;
+      user-select: text;
+    }
+    
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.8rem;
+        max-width: 100%;
+      }
+      nav ul {
+        gap: 1.3rem;
+        font-size: 0.95rem;
+      }
+      .about-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .about-text {
+        max-width: 90%;
+      }
+    }
+    @media (max-width: 480px) {
+      nav ul {
+        gap: 1rem;
+      }
+      .platform-list {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container" role="banner">
+      <div class="logo" aria-label="Zar Darcy logo" tabindex="0">ZAR DARCY</div>
+      <nav aria-label="Primary navigation">
+        <ul>
+          <li><a href="#about" tabindex="0">About</a></li>
+          <li><a href="#courses" tabindex="0">Courses</a></li>
+          <li><a href="#platforms" tabindex="0">Platforms</a></li>
+          <li><a href="#contact" tabindex="0">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero" aria-label="Introduction">
+      <h1 tabindex="0">Learn Machine Learning & Neural Networks with Zar Darcy</h1>
+      <p tabindex="0">Bold, fresh, and seductive teaching on platforms you wouldn’t expect. Empowering youth through knowledge and charm.</p>
+      <a href="#courses" class="btn-primary" role="button" tabindex="0">Explore Courses</a>
+    </section>
+
+    <section id="about" class="about" tabindex="-1" aria-labelledby="about-title">
+      <h2 id="about-title" tabindex="0">About Me</h2>
+      <article class="card about-content">
+        <div class="user-image-container" aria-label="User profile images" tabindex="0">
+          <img src="https://i.pinimg.com/736x/9d/fa/0f/9dfa0f31285cdf384a50174ff3fe0178.jpg" alt="Zar Darcy portrait 1" class="active" />
+          <img src="https://i.pinimg.com/736x/80/c0/5d/80c05db3ad615a8b499d12e7fdd109c0.jpg" alt="Zar Darcy portrait 2" />
+          <img src="https://i.pinimg.com/736x/85/3e/f8/853ef863ffb70a6a0be8a0ccc95dac56.jpg" alt="Zar Darcy portrait 3" />
+        </div>
+        <div class="about-text" tabindex="0">
+          <p>
+            Hi, I’m Zar Darcy, a former PhD student turned educator specializing in machine learning and neural networks. I create unique, accessible content combining technical knowledge with engaging presentation on platforms that challenge norms to reach and inspire younger audiences.
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <section id="courses" class="courses" tabindex="-1" aria-labelledby="courses-title">
+      <h2 id="courses-title" tabindex="0">Courses & Topics</h2>
+      <div class="course-list" role="list">
+        <article class="course-card" tabindex="0" role="listitem" aria-labelledby="course1-title">
+          <h3 id="course1-title">Fundamentals of Machine Learning</h3>
+          <p>Explore the basics of ML including supervised, unsupervised learning, and model evaluation techniques simplified for easy understanding.</p>
+        </article>
+        <article class="course-card" tabindex="0" role="listitem" aria-labelledby="course2-title">
+          <h3 id="course2-title">Deep Dive into Neural Networks</h3>
+          <p>Dive into neural network architectures, activation functions, training algorithms, and hands-on examples to build your own models.</p>
+        </article>
+        <article class="course-card" tabindex="0" role="listitem" aria-labelledby="course3-title">
+          <h3 id="course3-title">Practical Applications in Real Life</h3>
+          <p>Discover practical implementations of ML and NNs on trending platforms and real-world scenarios, demystifying complex concepts.</p>
+        </article>
+      </div>
+    </section>
+
+  <section id="platforms" class="platforms" tabindex="-1" aria-labelledby="platforms-title">
+  <h2 id="platforms-title" tabindex="0">Where to Find Me</h2>
+  <div class="platform-list" role="list">
+    <div class="platform-item" role="listitem" tabindex="0" aria-label="PornHub platform">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTISSeEHJJ_JoA50xJ8M7yXyUogbXw1GX4ctw&s" alt="PornHub logo" style="width:128px;height:128px;" />
+      PornHub
+    </div>
+    <div class="platform-item" role="listitem" tabindex="0" aria-label="OnlyFans platform">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl6zjlK7EZQdGUpY6rR_bJmBSbUDF5dU2PLw&s" alt="OnlyFans logo" style="width:64px;height:64px;" />
+      OnlyFans
+    </div>
+  </div>
+</section>
+
+
+    <section id="contact" class="contact" tabindex="-1" aria-labelledby="contact-title">
+      <h2 id="contact-title" tabindex="0">Contact Me</h2>
+      <form action="mailto:contact@zardarcy.com" method="post" enctype="text/plain" aria-label="Contact form">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your full name" required autocomplete="name" />
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="email@example.com" required autocomplete="email" />
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4" placeholder="Write your message here..." required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </main>
+  <footer>
+    &copy; 2024 Zar Darcy. All rights reserved.
+  </footer>
+  <script>
+    (() => {
+      const container = document.querySelector('.user-image-container');
+      if (!container) return;
+      const images = container.querySelectorAll('img');
+      let index = 0;
+      setInterval(() => {
+        images[index].classList.remove('active');
+        index = (index + 1) % images.length;
+        images[index].classList.add('active');
+      }, 4000);
+    })();
+  </script>
+</body>
+</html>
+
